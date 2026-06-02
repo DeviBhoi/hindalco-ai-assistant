@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Panel</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial;
+
+            background: #0f172a;
+
+            color: white;
+
+            padding: 30px;
+        }
+
+        h1 {
+
+            color: orange;
+        }
+
+        h2 {
+
+            color: orange;
+
+            margin-top: 40px;
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+
+            border: 1px solid white;
+        }
+
+        th,
+        td {
+
+            padding: 12px;
+        }
+
+        input,
+        textarea,
+        select {
+
+            width: 100%;
+
+            padding: 10px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 5px;
+        }
+
+        button {
+
+            background: orange;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 20px;
+
+            margin-top: 10px;
+
+            cursor: pointer;
+
+            border-radius: 5px;
+        }
+
+        button:hover {
+
+            opacity: 0.9;
+        }
+
+        a {
+
+            color: red;
+
+            text-decoration: none;
+        }
+
+        .settings-box {
+
+            background: #1e293b;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            margin-top: 20px;
+        }
+
+        .reset-btn {
+
+            background: red;
+        }
+
+        /* =========================
+           SMALL RIGHT BACK BUTTON
+        ========================= */
+
+        .back-btn{
+
+            position:fixed;
+
+            top:15px;
+
+            right:15px;
+
+            width:40px;
+
+            height:40px;
+
+            border:none;
+
+            border-radius:50%;
+
+            background:linear-gradient(135deg,#ff7b00,#ff9500);
+
+            color:white;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            box-shadow:0 3px 10px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+
+            z-index:999;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            padding:0;
+        }
+
+        .back-btn:hover{
+
+            transform:scale(1.08);
+
+            background:linear-gradient(135deg,#ff5500,#ff7700);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SMALL RIGHT BACK BUTTON -->
+
+    <button class="back-btn" onclick="goDashboard()">
+
+    ←
+
+</button>
+
+    <h1>Hindalco AI Admin Panel</h1>
+
+    <!-- ================= CHAT LIMIT SETTINGS ================= -->
+
+    <div class="settings-box">
+
+        <h2>Chat Limit Settings</h2>
+
+<form action="/save-settings" method="POST">
+
+    <div class="settings-box">
+
+        <h2>Chat Limit Settings</h2>
+
+        <label>Enable Chat Limit</label>
+
+        <select name="limit_enabled">
+
+            <option value="true">Enabled</option>
+
+            <option value="false">Disabled</option>
+
+        </select>
+
+        <label>Maximum Messages</label>
+
+        <input
+            type="number"
+            name="max_messages"
+            value="10"
+            required
+        >
+
+        <label>Reset Time (Hours)</label>
+
+        <input
+            type="number"
+            name="reset_hours"
+            value="1"
+            required
+        >
+
+        <button type="submit">
+            Save Settings
+        </button>
+
+    </div>
+
+</form>
+    <!-- ================= ADMIN EMAILS ================= -->
+
+<div class="settings-box">
+
+    <h2>Authorized Admin Emails</h2>
+
+    <form action="/add-admin-email" method="POST">
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter Admin Email"
+            required
+        >
+
+        <button type="submit">
+
+            Add Email
+
+        </button>
+
+    </form>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Email</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        {% for admin in admin_emails %}
+
+        <tr>
+
+            <td>{{ admin.id }}</td>
+
+            <td>{{ admin.email }}</td>
+
+            <td>
+
+                <a href="/delete-admin-email/{{ admin.id }}">
+
+                    Delete
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+    <!-- ================= ADD RESPONSES ================= -->
+
+    <h2>Add Chatbot Responses</h2>
+
+    <form action="/add-query" method="POST">
+
+    <input
+        type="text"
+        name="keyword"
+        placeholder="Enter Query"
+        required
+    >
+
+    <textarea
+        name="response"
+        placeholder="Enter Response"
+        required
+    ></textarea>
+
+    <button type="submit">
+        Save Query
+    </button>
+
+</form>
+
+    <!-- ================= RESPONSE TABLE ================= -->
+
+    <table>
+
+    <tr>
+
+        <th>ID</th>
+
+        <th>Query</th>
+
+        <th>Response</th>
+
+        <th>Action</th>
+
+    </tr>
+
+    {% for row in custom_queries %}
+
+    <tr>
+
+        <td>{{ row.id }}</td>
+
+        <td>{{ row.keyword }}</td>
+
+        <td>{{ row.response }}</td>
+
+        <td>
+
+            <a href="/delete-query/{{ row.id }}">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+    <script>
+
+        function goDashboard(){
+
+    window.location.href="/dashboard";
+
+}
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Hindalco AI Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        
+
+.popup-limit-box{
+
+    width:400px;
+
+    background:#1e293b;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 30px rgba(255,165,0,0.4);
+
+    animation:popupAnim 0.3s ease;
+}
+
+.popup-icon{
+
+    width:90px;
+    height:90px;
+
+    background:#ef4444;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    margin:auto;
+
+    font-size:45px;
+
+    color:white;
+
+    font-weight:bold;
+}
+
+.popup-limit-box h2{
+
+    color:white;
+
+    margin-top:20px;
+
+    font-size:32px;
+}
+
+.popup-limit-box p{
+
+    color:#cbd5e1;
+
+    margin-top:15px;
+
+    font-size:18px;
+}
+
+.popup-limit-box button{
+
+    margin-top:25px;
+
+    background:linear-gradient(
+        90deg,
+        #f59e0b,
+        #ea580c
+    );
+
+    border:none;
+
+    padding:14px 35px;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+@keyframes popupAnim{
+
+    from{
+
+        transform:scale(0.7);
+
+        opacity:0;
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+    }
+}
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn{
+
+            width:50px;
+
+            height:50px;
+
+            border:none;
+
+            border-radius:50%;
+
+            background:linear-gradient(135deg,#ff7b00,#ff9500);
+
+            color:white;
+
+            font-size:22px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            margin-right:15px;
+
+            box-shadow:0 4px 15px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+
+            transform:scale(1.1);
+
+            background:linear-gradient(135deg,#ff5500,#ff7700);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+
+    <div class="main-container">
+
+        <!-- ===== SIDEBAR ===== -->
+
+        <div class="sidebar">
+
+            <div class="logo-section">
+
+                <div class="logo-circle">
+                    H
+                </div>
+
+                <h2>Hindalco AI</h2>
+
+            </div>
+
+            <a href="/admin" class="menu-btn">
+                ⚙️ Admin
+            </a>
+
+            {% if session.get("admin") %}
+
+<a href="/logs" class="menu-btn">
+    📊 User Logs
+</a>
+
+{% endif %}
+
+            <button
+                class="menu-btn"
+                onclick="openHelp()"
+            >
+            🆘 Help & Support
+            </button>
+
+            {% if session.get("admin") %}
+
+<a href="/logout" class="menu-btn logout-btn">
+    🚪 Logout
+</a>
+
+{% endif %}
+
+        </div>
+
+        <!-- ===== CHAT SECTION ===== -->
+
+        <div class="chat-section">
+
+            <!-- ===== TOP BAR ===== -->
+
+            <div class="top-bar">
+
+                <!-- ===== BACK BUTTON ===== -->
+
+                <button onclick="goBack()" class="back-btn">
+
+                    ◀
+
+                </button>
+
+                <div>
+
+                    <h1>Hindalco AI is Here</h1>
+
+                    <p>
+                        🎧 24/7 Customer Service Available
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ===== CHAT BOX ===== -->
+
+            <div id="chat-box">
+
+               <div class="bot-message">
+
+    👋 Hello {{ session.get("username", "User") }}!<br><br>
+
+    Welcome to Hindalco AI Assistant.<br>
+
+    How can I help you today?
+
+</div>
+<!-- QUICK SUPPORT POPUP -->
+
+<div class="quick-help-container">
+
+    <button class="quick-help-btn" onclick="togglePopup()">
+        ⚡ Quick Support
+    </button>
+
+    <div class="popup-box" id="popupBox">
+
+        <h3>Select Your Issue</h3>
+
+        <button onclick="sendQuickMessage('wifi issue')">
+            🌐 Network Issue
+        </button>
+
+        <button onclick="sendQuickMessage('laptop slow')">
+            💻 Laptop Slow
+        </button>
+
+        <button onclick="sendQuickMessage('mail issue')">
+            📧 Outlook Issue
+        </button>
+
+        <button onclick="sendQuickMessage('vpn issue')">
+            🔒 VPN Issue
+        </button>
+
+        <button onclick="sendQuickMessage('printer issue')">
+            🖨 Printer Issue
+        </button>
+
+    </div>
+
+</div>
+
+            </div>
+
+            <!-- ===== INPUT AREA ===== -->
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="user-input"
+                    placeholder="Ask your query..."
+                >
+
+                <button onclick="sendMessage()">
+
+                    Send
+
+                </button>
+               
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===== HELP MODAL ===== -->
+
+    <div id="helpModal" class="modal">
+
+        <div class="modal-content">
+
+            <span
+                class="close-btn"
+                onclick="closeHelp()"
+            >
+                &times;
+            </span>
+
+            <h2>🆘 Help & Support</h2>
+
+            <p>
+
+                📧 Email:
+                adityalum.itsupport@gmail.com
+
+            </p>
+
+            <p>
+
+                ☎️ IT Helpdesk:
+                +91 8018043842
+
+            </p>
+
+            <p>
+
+                🕒 Support Timing:
+                24/7
+
+            </p>
+
+        </div>
+
+    </div>
+<div id="limitPopup" class="popup-overlay">
+
+    <div class="popup-limit-box">
+
+        <div class="popup-icon">
+            ⚠
+        </div>
+
+        <h2>Chat Limit Reached</h2>
+
+        <p id="popupMessage">
+
+            You have reached your chat limit.
+
+        </p>
+
+        <button onclick="closePopup()">
+
+            OK
+
+        </button>
+
+    </div>
+
+</div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <!-- ===== BACK BUTTON SCRIPT ===== -->
+
+   <script>
+
+function goBack() {
+
+    window.history.back();
+
+}
+
+function showPopup(message){
+
+    document.getElementById(
+        "popupMessage"
+    ).innerText = message;
+
+    document.getElementById(
+        "limitPopup"
+    ).style.display = "flex";
+}
+
+function closePopup(){
+
+    document.getElementById(
+        "limitPopup"
+    ).style.display = "none";
+}
+
+</script>
+
+
+</body>
+
+</html>

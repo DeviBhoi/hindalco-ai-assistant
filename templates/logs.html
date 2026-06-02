@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>User Logs</title>
+
+    <style>
+
+        body {
+
+            background: #0f172a;
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 30px;
+
+            margin: 0;
+        }
+
+        h1 {
+
+            color: orange;
+
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn{
+
+            position:fixed;
+
+            top:20px;
+
+            left:20px;
+
+            background:linear-gradient(135deg,#ff7b00,#ff9500);
+
+            color:white;
+
+            border:none;
+
+            padding:12px 24px;
+
+            border-radius:12px;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            box-shadow:0 4px 15px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+
+            z-index:999;
+        }
+
+        .back-btn:hover{
+
+            transform:scale(1.08);
+
+            background:linear-gradient(135deg,#ff5500,#ff7700);
+        }
+
+        /* ===== RESPONSIVE TABLE CONTAINER ===== */
+
+        .table-container {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            margin-top: 30px;
+        }
+
+        /* ===== TABLE ===== */
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            table-layout: fixed;
+
+            min-width: 1000px;
+        }
+
+        table,
+        th,
+        td {
+
+            border: 1px solid white;
+        }
+
+        th {
+
+            background: #111827;
+
+            color: orange;
+
+            font-size: 18px;
+        }
+
+        th,
+        td {
+
+            padding: 12px;
+
+            text-align: left;
+
+            vertical-align: top;
+
+            word-wrap: break-word;
+
+            overflow-wrap: break-word;
+
+            word-break: break-word;
+        }
+
+        td {
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        /* ===== BOT RESPONSE COLUMN ===== */
+
+        td:nth-child(6) {
+
+            max-width: 350px;
+        }
+
+        /* ===== USER QUERY COLUMN ===== */
+
+        td:nth-child(5) {
+
+            max-width: 250px;
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+
+        @media screen and (max-width: 768px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+            h1 {
+
+                font-size: 28px;
+
+                margin-top: 60px;
+            }
+
+            th,
+            td {
+
+                padding: 10px;
+
+                font-size: 13px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- BACK BUTTON -->
+
+    <button class="back-btn" onclick="goBack()">
+        ← Back
+    </button>
+
+    <h1>Hindalco AI User Logs</h1>
+
+    <!-- ===== RESPONSIVE TABLE WRAPPER ===== -->
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>User</th>
+
+                <th>Employee ID</th>
+
+                <th>Department</th>
+
+                <th>User Query</th>
+
+                <th>Bot Response</th>
+
+                <th>Time</th>
+
+            </tr>
+
+            {% for row in logs %}
+
+           <tr>
+
+    <td>{{ row.id }}</td>
+
+    <td>{{ row.username }}</td>
+
+    <td>{{ row.employee_id }}</td>
+
+    <td>{{ row.department }}</td>
+
+    <td>{{ row.message }}</td>
+
+    <td>{{ row.reply }}</td>
+
+    <td>{{ row.created_at }}</td>
+
+</tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <script>
+
+        function goBack(){
+
+            window.history.back();
+
+        }
+
+    </script>
+
+</body>
+
+</html>

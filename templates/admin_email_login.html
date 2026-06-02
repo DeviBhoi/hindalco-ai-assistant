@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Email OTP</title>
+
+    <style>
+
+        *{
+
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        body{
+
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            background:
+
+            linear-gradient(
+                135deg,
+                #0f172a,
+                #1e293b
+            );
+        }
+
+        .login-box{
+
+            width:420px;
+
+            background:#1e293b;
+
+            padding:45px;
+
+            border-radius:20px;
+
+            box-shadow:
+
+            0px 0px 25px rgba(0,0,0,0.4);
+
+            text-align:center;
+        }
+
+        .icon{
+
+            width:90px;
+            height:90px;
+
+            background:#f59e0b;
+
+            border-radius:50%;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            margin:auto;
+
+            font-size:40px;
+
+            color:white;
+
+            margin-bottom:20px;
+        }
+
+        h1{
+
+            color:#f59e0b;
+
+            margin-bottom:10px;
+
+            font-size:38px;
+        }
+
+        p{
+
+            color:#cbd5e1;
+
+            margin-bottom:35px;
+
+            font-size:17px;
+        }
+
+        input{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            outline:none;
+
+            border-radius:12px;
+
+            margin-bottom:25px;
+
+            font-size:16px;
+
+            background:#334155;
+
+            color:white;
+        }
+
+        input::placeholder{
+
+            color:#cbd5e1;
+        }
+
+        /* ===== MAIN BUTTON ===== */
+
+        .submit-btn{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#f59e0b;
+
+            color:white;
+
+            font-size:20px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .submit-btn:hover{
+
+            background:#ffb703;
+
+            transform:scale(1.02);
+        }
+
+        .footer-text{
+
+            margin-top:25px;
+
+            color:#94a3b8;
+
+            font-size:14px;
+        }
+
+        /* =========================
+           SMALL BACK BUTTON
+        ========================= */
+
+        .back-btn{
+
+            position:fixed;
+
+            top:15px;
+
+            left:15px;
+
+            width:42px;
+
+            height:42px;
+
+            border:none;
+
+            border-radius:50%;
+
+            background:linear-gradient(135deg,#ff7b00,#ff9500);
+
+            color:white;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            box-shadow:0 3px 10px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+
+            z-index:999;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            padding:0;
+        }
+
+        .back-btn:hover{
+
+            transform:scale(1.08);
+
+            background:linear-gradient(135deg,#ff5500,#ff7700);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SMALL BACK BUTTON -->
+
+    <button class="back-btn" onclick="goBack()">
+        ←
+    </button>
+
+    <div class="login-box">
+
+        <div class="icon">
+
+            🔐
+
+        </div>
+
+        <h1>
+
+            Admin Verification
+
+        </h1>
+
+        <p>
+
+            Secure Email OTP Authentication
+
+        </p>
+
+        <form method="POST" action="/send-email-otp">
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Admin Email"
+                required
+            >
+
+            <button type="submit" class="submit-btn">
+
+                Send OTP
+
+            </button>
+
+        </form>
+
+        <div class="footer-text">
+
+            Hindalco AI Security System
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function goBack(){
+
+            window.location.href="/dashboard";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

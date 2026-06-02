@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hindalco Login</title>
+
+    <style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#0f172a;
+    font-family:Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.login-container{
+
+    width:420px;
+    background:#1e293b;
+    padding:40px;
+    border-radius:25px;
+
+    box-shadow:
+    0 0 25px rgba(255,165,0,0.3);
+
+    text-align:center;
+}
+
+.logo-circle{
+
+    width:120px;
+    height:120px;
+    background:white;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:auto;
+    margin-top:-100px;
+
+    font-size:70px;
+    font-weight:bold;
+    color:#ea580c;
+}
+
+h1{
+
+    color:white;
+    font-size:55px;
+    margin-top:20px;
+}
+
+.subtitle{
+
+    color:#cbd5e1;
+    font-size:28px;
+    margin-bottom:40px;
+}
+
+input{
+
+    width:100%;
+    padding:20px;
+    margin-bottom:25px;
+
+    border:none;
+    border-radius:15px;
+
+    background:#475569;
+    color:white;
+
+    font-size:22px;
+}
+
+input::placeholder{
+
+    color:#d1d5db;
+}
+
+.continue-btn{
+
+    width:100%;
+    padding:18px;
+
+    border:none;
+    border-radius:15px;
+
+    background:linear-gradient(
+        90deg,
+        #f59e0b,
+        #ea580c
+    );
+
+    color:white;
+
+    font-size:24px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.continue-btn:hover{
+
+    transform:scale(1.03);
+
+    box-shadow:
+    0 0 20px rgba(255,165,0,0.5);
+}
+
+        /* ===== BACKGROUND GLOW ===== */
+
+        .background-glow {
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(249,115,22,0.4),
+                    transparent
+                );
+
+            filter: blur(80px);
+
+            top: -100px;
+            right: -100px;
+        }
+
+        /* ===== LOGIN BOX ===== */
+
+        .login-container {
+
+            position: relative;
+
+            width: 400px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(15px);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            border-radius: 25px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.4);
+
+            z-index: 10;
+        }
+
+        /* ===== LOGO ===== */
+
+        .logo {
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        white,
+        #f8fafc
+    );
+
+    color: #ea580c;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
+    margin-top: -90px;
+
+    font-size: 60px;
+    font-weight: bold;
+
+    box-shadow:
+        0 0 25px rgba(255, 165, 0, 0.4);
+
+    border: 5px solid #f59e0b;
+
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 40px rgba(255, 165, 0, 0.6);
+}
+
+        /* ===== TITLE ===== */
+
+        h1 {
+
+            text-align: center;
+
+            color: white;
+
+            margin-top: 20px;
+
+            font-size: 34px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: rgba(255,255,255,0.7);
+
+            margin-top: 8px;
+            margin-bottom: 30px;
+
+            font-size: 15px;
+        }
+
+        /* ===== INPUTS ===== */
+
+        input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-bottom: 18px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            color: white;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        input::placeholder {
+
+            color:
+                rgba(255,255,255,0.6);
+        }
+
+        /* ===== LOGIN BUTTON ===== */
+
+        .login-btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f97316,
+                    #ea580c
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+
+            transform: scale(1.03);
+        }
+
+        /* ===== FOOTER ===== */
+
+        .footer {
+
+            text-align: center;
+
+            color:
+                rgba(255,255,255,0.6);
+
+            margin-top: 25px;
+
+            font-size: 13px;
+        }
+
+        /* ===== BACK BUTTON ===== */
+
+        .back-btn{
+
+            position:fixed;
+
+            top:20px;
+
+            left:20px;
+
+            width:auto;
+
+            padding:12px 22px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:linear-gradient(135deg,#ff7b00,#ff9500);
+
+            color:white;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            box-shadow:0 4px 15px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+
+            z-index:999;
+        }
+
+        .back-btn:hover{
+
+            transform:scale(1.08);
+
+            background:linear-gradient(135deg,#ff5500,#ff7700);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- BACK BUTTON -->
+
+    <button class="back-btn" onclick="goBack()">
+        ← Back
+    </button>
+
+    <!-- ===== BACKGROUND EFFECT ===== -->
+
+    <div class="background-glow"></div>
+
+    <!-- ===== LOGIN CONTAINER ===== -->
+
+    <div class="login-container">
+
+        <!-- LOGO -->
+
+        <div class="logo">
+            H
+        </div>
+
+        <!-- TITLE -->
+
+        <h1>Hindalco User Information</h1>
+
+        <p class="subtitle">
+            Enter your details to access the Hindalco AI Support System
+        </p>
+
+        <!-- LOGIN FORM -->
+
+<form action="/login-user" method="POST">
+
+    <input
+        type="text"
+        name="username"
+        placeholder="Full Name"
+        required
+    >
+
+    <input
+        type="text"
+        name="employee_id"
+        placeholder="Employee ID"
+        required
+    >
+
+    <input
+        type="text"
+        name="department"
+        placeholder="Department Name"
+        required
+    >
+
+    <button class="continue-btn" type="submit">
+    Continue 
+    </button>  
+
+</form>
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            Hindalco AI Support System
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function goBack(){
+
+            window.history.back();
+
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Verify OTP</title>
+
+    <style>
+
+        *{
+
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        body{
+
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            background:
+
+            linear-gradient(
+                135deg,
+                #0f172a,
+                #1e293b
+            );
+        }
+
+        .otp-box{
+
+            width:420px;
+
+            background:#1e293b;
+
+            padding:45px;
+
+            border-radius:20px;
+
+            box-shadow:
+
+            0px 0px 25px rgba(0,0,0,0.4);
+
+            text-align:center;
+        }
+
+        .icon{
+
+            width:90px;
+            height:90px;
+
+            background:#f59e0b;
+
+            border-radius:50%;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            margin:auto;
+
+            font-size:40px;
+
+            color:white;
+
+            margin-bottom:20px;
+        }
+
+        h1{
+
+            color:#f59e0b;
+
+            margin-bottom:10px;
+
+            font-size:38px;
+        }
+
+        p{
+
+            color:#cbd5e1;
+
+            margin-bottom:35px;
+
+            font-size:17px;
+        }
+
+        input{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            outline:none;
+
+            border-radius:12px;
+
+            margin-bottom:25px;
+
+            font-size:18px;
+
+            text-align:center;
+
+            letter-spacing:4px;
+
+            background:#334155;
+
+            color:white;
+        }
+
+        input::placeholder{
+
+            color:#cbd5e1;
+        }
+
+        /* ===== VERIFY BUTTON ===== */
+
+        .verify-btn{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#f59e0b;
+
+            color:white;
+
+            font-size:20px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .verify-btn:hover{
+
+            background:#ffb703;
+
+            transform:scale(1.02);
+        }
+
+        .footer{
+
+            margin-top:25px;
+
+            color:#94a3b8;
+
+            font-size:14px;
+        }
+
+        /* =========================
+           SMALL LEFT BACK BUTTON
+        ========================= */
+
+        .back-btn{
+
+            position:fixed;
+
+            top:15px;
+
+            left:15px;
+
+            width:40px;
+
+            height:40px;
+
+            border:none;
+
+            border-radius:50%;
+
+            background:linear-gradient(135deg,#ff7b00,#ff9500);
+
+            color:white;
+
+            font-size:18px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            box-shadow:0 3px 10px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+
+            z-index:999;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            padding:0;
+        }
+
+        .back-btn:hover{
+
+            transform:scale(1.08);
+
+            background:linear-gradient(135deg,#ff5500,#ff7700);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SMALL LEFT BACK BUTTON -->
+
+    <button class="back-btn" onclick="goLogin()"></button>
+        ←
+    </button>
+
+    <div class="otp-box">
+
+        <div class="icon">
+
+            🔑
+
+        </div>
+
+        <h1>
+
+            Verify OTP
+
+        </h1>
+
+        <p>
+
+            Enter the OTP sent to your email
+
+        </p>
+
+        <form method="POST" action="/verify-email-otp">
+
+            <input
+                type="text"
+                name="otp"
+                placeholder="Enter OTP"
+                required
+            >
+
+            <button type="submit" class="verify-btn">
+
+                Verify OTP
+
+            </button>
+
+        </form>
+
+        <div class="footer">
+
+            Hindalco AI Secure Authentication
+
+        </div>
+
+    </div>
+
+    <script>
+
+       function goLogin(){
+
+    window.location.href="/admin-email-login";
+
+}
+
+    </script>
+
+</body>
+
+</html>
