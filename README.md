@@ -1153,7 +1153,7 @@ app.secret_key = "hindalco_secret_key"
 
 ## 👤 Author Information
 
-**Project Developer**: Sunit & Team  
+**Project Developer**: Devi Archana Bhoi
 **Organization**: Hindalco Industries Limited  
 **Email**: deviarchanabhoi@gmail.com  
 **LinkedIn**: [Your LinkedIn Profile]  
